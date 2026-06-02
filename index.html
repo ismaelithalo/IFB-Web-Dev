@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DevScope - Gerador de Portfólio & Analisador de Perfil Tech</title>
+    <!-- Fontes do Google: Outfit para títulos e Inter para textos gerais -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Outfit:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <!-- Font Awesome para ícones modernos -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- Estilização do Aplicativo -->
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body class="corpo-app">
+    <div class="conteiner-principal">
+        <!-- Cabeçalho Principal -->
+        <header class="cabecalho-app" id="cabecalho-principal">
+            <div class="logotipo" id="logotipo-app">
+                <i class="fa-solid fa-terminal icone-logo"></i>
+                <span class="texto-logo">DevScope</span>
+            </div>
+            <p class="subtitulo-app">Transforme perfis do GitHub em portfólios analíticos de alto impacto</p>
+        </header>
+
+        <!-- Seção de Busca (Home) -->
+        <section class="secao-busca" id="secao-busca-usuario">
+            <form class="formulario-busca" id="formulario-pesquisa">
+                <div class="grupo-busca">
+                    <i class="fa-solid fa-magnifying-glass icone-busca"></i>
+                    <input type="text" id="campo-usuario-github" class="campo-busca" placeholder="Digite o nome de usuário do GitHub (ex: torvalds)" required autocomplete="off">
+                </div>
+                <button type="submit" class="botao-busca" id="botao-enviar-pesquisa">
+                    <span>Analisar Perfil</span>
+                    <i class="fa-solid fa-arrow-right"></i>
+                </button>
+            </form>
+
+            <!-- Container de Resultados da Busca (Perfis Correspondentes) -->
+            <div class="conteiner-resultados invisivel" id="resultados-busca-github">
+                <h3 class="titulo-resultados">Perfil Encontrado</h3>
+                <div class="grade-resultados" id="lista-perfis-encontrados">
+                    <!-- Cards de perfis serão inseridos dinamicamente aqui -->
+                </div>
+            </div>
+        </section>
+
+        <!-- Seção do Dashboard Analítico e Portfólio (Tela Alternativa) -->
+        <section class="secao-dashboard invisivel" id="dashboard-analise-tech">
+            <div class="barra-navegacao-dashboard">
+                <button class="botao-voltar" id="botao-retornar-busca">
+                    <i class="fa-solid fa-chevron-left"></i>
+                    <span>Voltar para Busca</span>
+                </button>
+            </div>
+
+            <div class="grade-dashboard" id="conteudo-completo-dashboard">
+                <!-- O conteúdo estruturado do dashboard será inserido dinamicamente via DOM -->
+            </div>
+        </section>
+        
+        <!-- Elemento de Carregamento (Spinner e Esqueleto) -->
+        <div class="conteiner-carregamento invisivel" id="carregador-requisicao">
+            <div class="indicador-carregamento">
+                <div class="roda-carregamento"></div>
+                <p class="texto-carregamento">Mapeando repositórios e compilando métricas...</p>
+            </div>
+        </div>
+
+        <!-- Elemento de Erros -->
+        <div class="conteiner-erro invisivel" id="alerta-erro-perfil">
+            <i class="fa-solid fa-circle-exclamation icone-erro"></i>
+            <span class="mensagem-erro" id="texto-alerta-erro">Usuário não encontrado ou limite de requisições excedido.</span>
+        </div>
+
+        <!-- Rodapé do Aplicativo -->
+        <footer class="rodape-app" id="rodape-institucional">
+            <p>&copy; 2026 DevScope &bull; Desenvolvido para a disciplina Programação para Internet I</p>
+        </footer>
+    </div>
+
+    <!-- Ponto de Entrada da Lógica (Módulo ES6) -->
+    <script type="module" src="js/main.js"></script>
+</body>
+</html>
