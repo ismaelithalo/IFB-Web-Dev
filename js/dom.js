@@ -9,14 +9,14 @@ export function limparElemento(elemento) {
 export function renderizarResultadoBusca(usuario, aoClicarCard) {
     const conteinerResultados = document.getElementById('resultados-busca-github');
     const listaResultados = document.getElementById('lista-perfis-encontrados');
-    
+
     limparElemento(listaResultados);
     conteinerResultados.classList.remove('invisivel');
-    
+
     const cartao = document.createElement('article');
     cartao.className = 'cartao-resultado';
     cartao.id = `resultado-${usuario.login}`;
-    
+
     cartao.innerHTML = `
         <div class="perfil-info-resumo">
             <img src="${usuario.avatar_url}" alt="Foto de ${usuario.name || usuario.login}" class="foto-resultado">
@@ -27,29 +27,42 @@ export function renderizarResultadoBusca(usuario, aoClicarCard) {
         </div>
         <i class="fa-solid fa-arrow-right icone-seta-acao"></i>
     `;
-    
+
     cartao.addEventListener('click', () => aoClicarCard(usuario.login));
     listaResultados.appendChild(cartao);
 }
 
-// Retorna uma cor em formato hexadecimal associada à linguagem de programação para estilizar a badge.
+// Função feita com auxílio de IA
+// Retorna uma cor em formato hexadecimal calculada dinamicamente a partir do nome da linguagem de programação.
 function obterCorLinguagem(linguagem) {
-    const cores = {
-        'javascript': '#f1e05a',
-        'typescript': '#3178c6',
-        'python': '#3572a5',
-        'java': '#b07219',
-        'html': '#e34c26',
-        'css': '#563d7c',
-        'c#': '#178600',
-        'c++': '#f34b7d',
-        'php': '#4f5d95',
-        'ruby': '#701516',
-        'go': '#00add8',
-        'kotlin': '#a97bff',
-        'swift': '#f05138'
+    if (!linguagem || linguagem.trim() === '') {
+        return '#8b949e';
+    }
+
+    // Calcula um valor de hash simples a partir do nome da linguagem
+    let hash = 0;
+    const str = linguagem.toLowerCase();
+    for (let i = 0; i < str.length; i++) {
+        hash = str.charCodeAt(i) + ((hash << 5) - hash);
+    }
+
+    // Mapeia o hash para um matiz (hue) entre 0 e 360 graus
+    const hue = Math.abs(hash) % 360;
+
+    // Define saturação (65%) e luminosidade (55%) para obter cores vibrantes e harmônicas
+    const s = 65;
+    const l = 55;
+
+    // Converte HSL para formato hexadecimal
+    const lPercent = l / 100;
+    const a = (s / 100) * Math.min(lPercent, 1 - lPercent);
+    const f = (n) => {
+        const k = (n + hue / 30) % 12;
+        const color = lPercent - a * Math.max(Math.min(k - 3, 9 - k, 1), -1);
+        return Math.round(255 * color).toString(16).padStart(2, '0');
     };
-    return cores[linguagem.toLowerCase()] || '#8b949e';
+
+    return `#${f(0)}${f(8)}${f(4)}`;
 }
 
 // Reconstrói dinamicamente e renderiza o painel do dashboard analítico completo com estatísticas e repositórios autorais.
@@ -67,7 +80,7 @@ export function renderizarDashboard(resumoAnalise, repositoriosMapeados) {
     // 2. Coluna Lateral - Cartão de Perfil
     const cartaoPerfil = document.createElement('div');
     cartaoPerfil.className = 'cartao-perfil-detalhado';
-    
+
     let metaHTML = '';
     if (resumoAnalise.localizacao && resumoAnalise.localizacao !== 'Não informada') {
         metaHTML += `<div class="item-meta-perfil"><i class="fa-solid fa-location-dot"></i><span>${resumoAnalise.localizacao}</span></div>`;
@@ -168,9 +181,9 @@ export function renderizarDashboard(resumoAnalise, repositoriosMapeados) {
         repositoriosMapeados.forEach(repo => {
             const cartaoRepo = document.createElement('article');
             cartaoRepo.className = 'cartao-repositorio';
-            
+
             const corRepoLang = obterCorLinguagem(repo.linguagem);
-            
+
             cartaoRepo.innerHTML = `
                 <div class="cabecalho-repositorio">
                     <a href="${repo.urlAcesso}" target="_blank" rel="noopener noreferrer" class="titulo-repositorio">
@@ -219,9 +232,9 @@ export function alternarTelas(telaAtiva) {
     const secaoBusca = document.getElementById('secao-busca-usuario');
     const secaoDashboard = document.getElementById('dashboard-analise-tech');
     const erroAlerta = document.getElementById('alerta-erro-perfil');
-    
+
     erroAlerta.classList.add('invisivel');
-    
+
     if (telaAtiva === 'busca') {
         secaoDashboard.classList.add('invisivel');
         secaoBusca.classList.remove('invisivel');
@@ -235,19 +248,10 @@ export function alternarTelas(telaAtiva) {
 export function exibirErro(mensagem) {
     const erroAlerta = document.getElementById('alerta-erro-perfil');
     const textoErro = document.getElementById('texto-alerta-erro');
-    
+
     textoErro.textContent = mensagem;
     erroAlerta.classList.remove('invisivel');
-    
+
     window.scrollTo({ top: erroAlerta.offsetTop - 50, behavior: 'smooth' });
 }
 
-// Controla a visibilidade do modal de carregamento para feedbacks de requisições de rede demoradas.
-export function exibirCarregamento(mostrar) {
-    const carregador = document.getElementById('carregador-requisicao');
-    if (mostrar) {
-        carregador.classList.remove('invisivel');
-    } else {
-        carregador.classList.add('invisivel');
-    }
-}

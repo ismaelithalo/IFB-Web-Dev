@@ -12,6 +12,8 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <!-- Estilização do Aplicativo -->
     <link rel="stylesheet" href="css/style.css">
+    <!-- Biblioteca jQuery -->
+    <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
 </head>
 <body class="corpo-app">
     <div class="conteiner-principal">
@@ -59,14 +61,6 @@
                 <!-- O conteúdo estruturado do dashboard será inserido dinamicamente via DOM -->
             </div>
         </section>
-        
-        <!-- Elemento de Carregamento (Spinner e Esqueleto) -->
-        <div class="conteiner-carregamento invisivel" id="carregador-requisicao">
-            <div class="indicador-carregamento">
-                <div class="roda-carregamento"></div>
-                <p class="texto-carregamento">Mapeando repositórios e compilando métricas...</p>
-            </div>
-        </div>
 
         <!-- Elemento de Erros -->
         <div class="conteiner-erro invisivel" id="alerta-erro-perfil">

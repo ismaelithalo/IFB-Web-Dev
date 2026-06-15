@@ -3,13 +3,12 @@
 import { obterDadosUsuario, obterRepositorios } from './api.js';
 import { AnalisadorPerfil } from './classes.js';
 import { filtrarProjetosAutorais, mapearDadosRepositorios } from './funcoes.js';
-import { renderizarResultadoBusca, renderizarDashboard, alternarTelas, exibirErro, exibirCarregamento } from './dom.js';
+import { renderizarResultadoBusca, renderizarDashboard, alternarTelas, exibirErro } from './dom.js';
 
 let usuarioCache = null;
 
 // Busca informações básicas do usuário e prepara o resultado preliminar de pesquisa na tela inicial.
 async function processarBuscaPerfil(username) {
-    exibirCarregamento(true);
     document.getElementById('alerta-erro-perfil').classList.add('invisivel');
     
     try {
@@ -17,15 +16,11 @@ async function processarBuscaPerfil(username) {
         renderizarResultadoBusca(usuarioCache, carregarPainelDashboard);
     } catch (erro) {
         exibirErro(erro.message);
-    } finally {
-        exibirCarregamento(false);
     }
 }
 
 // Carrega os repositórios públicos, aciona o analisador de perfil e reconstrói o painel detalhado no dashboard.
 async function carregarPainelDashboard(username) {
-    exibirCarregamento(true);
-    
     try {
         const repositorios = await obterRepositorios(username);
         const analisador = new AnalisadorPerfil(usuarioCache, repositorios);
@@ -38,8 +33,6 @@ async function carregarPainelDashboard(username) {
         alternarTelas('dashboard');
     } catch (erro) {
         exibirErro('Erro ao processar as métricas do perfil. Tente novamente mais tarde.');
-    } finally {
-        exibirCarregamento(false);
     }
 }
 
