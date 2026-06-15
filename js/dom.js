@@ -70,14 +70,12 @@ export function renderizarDashboard(resumoAnalise, repositoriosMapeados) {
     const conteinerDashboard = document.getElementById('conteudo-completo-dashboard');
     limparElemento(conteinerDashboard);
 
-    // 1. Criação das colunas principais
     const colunaLateral = document.createElement('aside');
     colunaLateral.className = 'coluna-lateral';
 
     const colunaPrincipal = document.createElement('main');
     colunaPrincipal.className = 'coluna-principal';
 
-    // 2. Coluna Lateral - Cartão de Perfil
     const cartaoPerfil = document.createElement('div');
     cartaoPerfil.className = 'cartao-perfil-detalhado';
 
@@ -104,7 +102,7 @@ export function renderizarDashboard(resumoAnalise, repositoriosMapeados) {
         </div>
     `;
 
-    // 3. Coluna Principal - Cartão de Análise Tech (Destaque)
+    // Cartão de Análise Tech
     const cartaoAnalise = document.createElement('div');
     cartaoAnalise.className = 'cartao-analise-tech';
     const corLinguagem = obterCorLinguagem(resumoAnalise.linguagemPrincipal);
@@ -132,7 +130,7 @@ export function renderizarDashboard(resumoAnalise, repositoriosMapeados) {
 
     colunaLateral.appendChild(cartaoPerfil);
 
-    // 4. Coluna Principal - Grade de Estatísticas
+    // Grade de Estatísticas
     const gradeEstats = document.createElement('div');
     gradeEstats.className = 'grade-estatisticas';
 
@@ -156,7 +154,7 @@ export function renderizarDashboard(resumoAnalise, repositoriosMapeados) {
         gradeEstats.appendChild(item);
     });
 
-    // 5. Coluna Principal - Seção de Repositórios
+    // Seção de Repositórios
     const secaoRepos = document.createElement('section');
     secaoRepos.className = 'secao-repositorios';
 
@@ -246,7 +244,7 @@ export function alternarTelas(telaAtiva) {
     }
 }
 
-// Apresenta na tela um banner dinâmico notificando erros ou avisos amigáveis para o usuário.
+// Apresenta na tela um banner dinâmico notificando erros ou avisos para o usuário.
 export function exibirErro(mensagem) {
     const erroAlerta = document.getElementById('alerta-erro-perfil');
     const textoErro = document.getElementById('texto-alerta-erro');

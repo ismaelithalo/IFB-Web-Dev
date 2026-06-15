@@ -5,15 +5,14 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>DevScope - Gerador de Portfólio & Analisador de Perfil Tech</title>
+    <meta name="author" content="Ismael Ithalo" />
+    <meta name="description" content="Analisador de perfis do Github e gerador de portfólio tech" />
     <!-- Fontes do Google: Outfit para títulos e Inter para textos gerais -->
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link
         href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Outfit:wght@400;500;600;700;800&display=swap"
         rel="stylesheet">
     <!-- Font Awesome para ícones modernos -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <!-- Estilização do Aplicativo -->
     <link rel="stylesheet" href="css/style.css">
     <!-- Biblioteca jQuery -->
     <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
@@ -21,7 +20,7 @@
 
 <body class="corpo-app">
     <div class="conteiner-principal">
-        <!-- Cabeçalho Principal -->
+
         <header class="cabecalho-app" id="cabecalho-principal">
             <div class="logotipo" id="logotipo-app">
                 <i class="fa-solid fa-terminal icone-logo"></i>
@@ -30,7 +29,7 @@
             <p class="subtitulo-app">Analisa perfis do Github e gera um relatório de expertise</p>
         </header>
 
-        <!-- Seção de Busca (Home) -->
+        <!-- Seção de Busca -->
         <section class="secao-busca" id="secao-busca-usuario">
             <form class="formulario-busca" id="formulario-pesquisa">
                 <div class="grupo-busca">
@@ -44,16 +43,16 @@
                 </button>
             </form>
 
-            <!-- Container de Resultados da Busca (Perfis Correspondentes) -->
+            <!-- Container de Resultados da Busca -->
             <div class="conteiner-resultados invisivel" id="resultados-busca-github">
                 <h3 class="titulo-resultados">Perfil Encontrado</h3>
                 <div class="grade-resultados" id="lista-perfis-encontrados">
-                    <!-- Cards de perfis serão inseridos dinamicamente aqui -->
+                    <!-- Cards de perfis serão inseridos dinamicamente via manipulação de DOM -->
                 </div>
             </div>
         </section>
 
-        <!-- Seção do Dashboard Analítico e Portfólio (Tela Alternativa) -->
+        <!-- Seção do Dashboard Analítico -->
         <section class="secao-dashboard invisivel" id="dashboard-analise-tech">
             <div class="barra-navegacao-dashboard">
                 <button class="botao-voltar" id="botao-retornar-busca">
@@ -63,7 +62,7 @@
             </div>
 
             <div class="grade-dashboard" id="conteudo-completo-dashboard">
-                <!-- O conteúdo estruturado do dashboard será inserido dinamicamente via DOM -->
+                <!-- O conteúdo estruturado do dashboard será inserido dinamicamente via manipulação de DOM -->
             </div>
         </section>
 
@@ -74,7 +73,6 @@
                 excedido.</span>
         </div>
 
-        <!-- Rodapé do Aplicativo -->
         <footer class="rodape-app" id="rodape-institucional">
             <p>&copy; 2026 DevScope &bull; Desenvolvido por ismaelithalo</p>
         </footer>

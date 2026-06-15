@@ -26,7 +26,7 @@ export class AnalisadorPerfil {
     // Identifica de forma estatística a linguagem de programação de maior dominância no histórico de projetos autorais.
     descobrirLinguagemPrincipal() {
         if (this.projetosAutorais.length === 0) return 'Nenhuma';
-        
+
         const contagem = this.projetosAutorais.reduce((acumulador, repo) => {
             if (repo.language) {
                 acumulador[repo.language] = (acumulador[repo.language] || 0) + 1;
@@ -40,15 +40,15 @@ export class AnalisadorPerfil {
     // Classifica o perfil em um arquétipo técnico baseado nas linguagens de programação utilizadas pelo desenvolvedor.
     definirTipoDesenvolvedor() {
         const linguagem = this.descobrirLinguagemPrincipal().toLowerCase();
-        
+
         if (['javascript', 'typescript', 'html', 'css'].includes(linguagem)) {
             return 'Especialista Front-end';
-        } else if (['python', 'java', 'go', 'c#', 'php', 'ruby', 'c++'].includes(linguagem)) {
+        } else if (['python', 'java', 'go', 'c#', 'php', 'ruby', 'c++', 'c', 'nodejs'].includes(linguagem)) {
             return 'Especialista Back-end';
         } else if (['kotlin', 'swift', 'dart'].includes(linguagem)) {
             return 'Desenvolvedor Mobile';
         }
-        return 'Engenheiro Fullstack / Explorer';
+        return 'Explorer';
     }
 
     // Consolida e exporta todas as métricas calculadas em um formato de objeto estruturado e limpo.
