@@ -11,6 +11,7 @@
     --cor-texto-secundario: #94a3b8;
     --cor-texto-desativado: #64748b;
     
+    --cor-primaria: #a855f7;
     --gradiente-primario: linear-gradient(135deg, #a855f7 0%, #3b82f6 100%);
     --gradiente-secundario: linear-gradient(135deg, #3b82f6 0%, #06b6d4 100%);
     --gradiente-sucesso: linear-gradient(135deg, #10b981 0%, #059669 100%);
@@ -78,10 +79,8 @@ body.corpo-app {
 
 .icone-logo {
     font-size: 2.5rem;
-    background: var(--gradiente-primario);
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
-    filter: drop-shadow(0px 2px 10px rgba(168, 85, 247, 0.3));
+    color: var(--cor-primaria);
+    filter: drop-shadow(0px 2px 10px rgba(168, 85, 247, 0.2));
 }
 
 .texto-logo {
@@ -89,9 +88,7 @@ body.corpo-app {
     font-size: 2.75rem;
     font-weight: 800;
     letter-spacing: -0.05em;
-    background: var(--gradiente-primario);
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
+    color: var(--cor-primaria);
 }
 
 .subtitulo-app {
@@ -158,9 +155,9 @@ body.corpo-app {
 }
 
 .botao-busca {
-    background: var(--gradiente-primario);
+    background-color: var(--cor-primaria);
     color: var(--cor-texto-principal);
-    border: none;
+    border: 1px solid transparent;
     outline: none;
     padding: 0.85rem 1.75rem;
     border-radius: 100px;
@@ -171,18 +168,13 @@ body.corpo-app {
     display: flex;
     align-items: center;
     gap: 0.5rem;
-    transition: transform 0.2s, filter var(--tempo-transicao), box-shadow var(--tempo-transicao);
-    box-shadow: 0 4px 15px rgba(168, 85, 247, 0.3);
+    transition: border-color var(--tempo-transicao), background-color var(--tempo-transicao), color var(--tempo-transicao);
 }
 
 .botao-busca:hover {
-    transform: translateY(-2px);
-    filter: brightness(1.1);
-    box-shadow: var(--sombra-neon-forte);
-}
-
-.botao-busca:active {
-    transform: translateY(0);
+    border-color: var(--cor-texto-principal);
+    background: rgba(255, 255, 255, 0.03);
+    color: var(--cor-texto-principal);
 }
 
 /* Resultados da Busca */
@@ -219,13 +211,12 @@ body.corpo-app {
     align-items: center;
     justify-content: space-between;
     cursor: pointer;
-    transition: transform var(--tempo-transicao), border-color var(--tempo-transicao), box-shadow var(--tempo-transicao);
+    transition: border-color var(--tempo-transicao), background-color var(--tempo-transicao);
 }
 
 .cartao-resultado:hover {
-    transform: translateX(5px);
-    border-color: var(--cor-borda-brilho);
-    box-shadow: var(--sombra-neon);
+    border-color: var(--cor-texto-principal);
+    background-color: rgba(255, 255, 255, 0.03);
 }
 
 .perfil-info-resumo {
@@ -244,7 +235,7 @@ body.corpo-app {
 }
 
 .cartao-resultado:hover .foto-resultado {
-    border-color: var(--cor-borda-brilho);
+    border-color: var(--cor-texto-principal);
 }
 
 .dados-texto-resultado {
@@ -268,12 +259,11 @@ body.corpo-app {
 .icone-seta-acao {
     font-size: 1.25rem;
     color: var(--cor-texto-desativado);
-    transition: transform var(--tempo-transicao), color var(--tempo-transicao);
+    transition: color var(--tempo-transicao);
 }
 
 .cartao-resultado:hover .icone-seta-acao {
-    color: var(--cor-borda-brilho);
-    transform: translateX(3px);
+    color: var(--cor-texto-principal);
 }
 
 /* Seção do Dashboard Analítico */
@@ -315,7 +305,7 @@ body.corpo-app {
 /* Layout em Grid do Dashboard */
 .grade-dashboard {
     display: grid;
-    grid-template-columns: 320px 1fr;
+    grid-template-columns: 320px minmax(0, 1fr);
     gap: 2rem;
 }
 
@@ -415,41 +405,80 @@ body.corpo-app {
 }
 
 .item-meta-perfil a:hover {
-    color: var(--cor-borda-brilho);
+    color: var(--cor-texto-principal);
 }
 
 /* Cartão Análise Tech */
 .cartao-analise-tech {
-    background-color: var(--cor-fundo-cartao);
-    border: 1px solid var(--cor-borda-padrao);
+    background: linear-gradient(135deg, rgba(15, 19, 34, 0.95) 0%, rgba(30, 41, 59, 0.7) 100%);
+    border: 1px solid rgba(168, 85, 247, 0.35);
     border-radius: 20px;
-    padding: 1.75rem 1.5rem;
+    padding: 1.75rem 2rem;
     display: flex;
     flex-direction: column;
     gap: 1.25rem;
-    box-shadow: var(--sombra-cartao);
+    box-shadow: var(--sombra-cartao), 0 0 25px rgba(168, 85, 247, 0.08);
+    position: relative;
+    overflow: hidden;
+}
+
+.cartao-analise-tech::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 4px;
+    background-color: var(--cor-primaria);
+}
+
+.conteiner-blocos-analise {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1rem;
+    width: 100%;
 }
 
 .titulo-analise {
     font-family: var(--fonte-titulos);
-    font-size: 1.15rem;
-    font-weight: 600;
+    font-size: 1.2rem;
+    font-weight: 700;
     color: var(--cor-texto-principal);
     display: flex;
     align-items: center;
     gap: 0.5rem;
+    margin: 0;
+    flex-shrink: 0;
 }
 
 .titulo-analise i {
-    background: var(--gradiente-primario);
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
+    color: var(--cor-primaria);
 }
 
 .bloco-analise {
     display: flex;
-    flex-direction: column;
-    gap: 0.35rem;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+    gap: 0.75rem;
+    background: rgba(255, 255, 255, 0.03);
+    border: 1px solid var(--cor-borda-padrao);
+    padding: 0.75rem 1.25rem;
+    border-radius: 12px;
+    transition: border-color var(--tempo-transicao), background-color var(--tempo-transicao);
+    white-space: nowrap;
+}
+
+.bloco-analise:hover {
+    border-color: var(--cor-texto-principal);
+    background-color: #161a28;
+}
+
+@media (max-width: 900px) {
+    .conteiner-blocos-analise {
+        grid-template-columns: 1fr;
+        gap: 0.75rem;
+    }
 }
 
 .rotulo-analise {
@@ -461,14 +490,14 @@ body.corpo-app {
 
 .badge-nivel-tech {
     align-self: flex-start;
-    background: var(--gradiente-primario);
+    background-color: var(--cor-primaria);
     color: var(--cor-texto-principal);
     font-family: var(--fonte-titulos);
     font-size: 0.9rem;
     font-weight: 700;
     padding: 0.35rem 0.85rem;
     border-radius: 50px;
-    box-shadow: 0 2px 10px rgba(168, 85, 247, 0.2);
+    box-shadow: 0 2px 10px rgba(168, 85, 247, 0.15);
 }
 
 .tipo-desenvolvedor {
@@ -599,14 +628,13 @@ body.corpo-app {
     flex-direction: column;
     justify-content: space-between;
     gap: 1.25rem;
-    transition: transform var(--tempo-transicao), border-color var(--tempo-transicao), box-shadow var(--tempo-transicao);
+    transition: border-color var(--tempo-transicao), background-color var(--tempo-transicao);
     box-shadow: var(--sombra-cartao);
 }
 
 .cartao-repositorio:hover {
-    transform: translateY(-4px);
-    border-color: rgba(168, 85, 247, 0.4);
-    box-shadow: 0 10px 20px rgba(168, 85, 247, 0.08);
+    border-color: var(--cor-texto-principal);
+    background-color: rgba(255, 255, 255, 0.03);
 }
 
 .cabecalho-repositorio {
@@ -629,7 +657,7 @@ body.corpo-app {
 }
 
 .titulo-repositorio:hover {
-    color: var(--cor-borda-brilho);
+    color: var(--cor-texto-principal);
 }
 
 .descricao-repositorio {
@@ -676,12 +704,11 @@ body.corpo-app {
     display: flex;
     align-items: center;
     gap: 0.25rem;
-    transition: color var(--tempo-transicao), transform var(--tempo-transicao);
+    transition: color var(--tempo-transicao);
 }
 
 .link-repositorio:hover {
     color: var(--cor-texto-principal);
-    transform: translateX(2px);
 }
 
 /* Indicadores de Carregamento */
@@ -794,7 +821,7 @@ body.corpo-app {
 }
 
 /* Responsividade (Telas médias e pequenas) */
-@media (max-width: 900px) {
+@media (max-width: 1024px) {
     .grade-dashboard {
         grid-template-columns: 1fr;
     }
@@ -806,9 +833,13 @@ body.corpo-app {
     .cartao-perfil-detalhado {
         padding: 2rem;
     }
+    
+    .grade-estatisticas {
+        grid-template-columns: repeat(2, 1fr);
+    }
 }
 
-@media (max-width: 650px) {
+@media (max-width: 768px) {
     .conteiner-principal {
         padding: 1.5rem 1rem;
         gap: 1.75rem;
@@ -836,11 +867,13 @@ body.corpo-app {
         padding: 0.75rem;
     }
     
-    .grade-estatisticas {
-        grid-template-columns: repeat(2, 1fr);
-    }
-    
     .grade-repositorios {
+        grid-template-columns: 1fr;
+    }
+}
+
+@media (max-width: 480px) {
+    .grade-estatisticas {
         grid-template-columns: 1fr;
     }
 }

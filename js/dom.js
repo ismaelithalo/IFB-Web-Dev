@@ -104,32 +104,33 @@ export function renderizarDashboard(resumoAnalise, repositoriosMapeados) {
         </div>
     `;
 
-    // 3. Coluna Lateral - Cartão de Análise Tech
+    // 3. Coluna Principal - Cartão de Análise Tech (Destaque)
     const cartaoAnalise = document.createElement('div');
     cartaoAnalise.className = 'cartao-analise-tech';
     const corLinguagem = obterCorLinguagem(resumoAnalise.linguagemPrincipal);
 
     cartaoAnalise.innerHTML = `
         <h3 class="titulo-analise"><i class="fa-solid fa-chart-line"></i> Análise de Perfil</h3>
-        <div class="bloco-analise">
-            <span class="rotulo-analise">Nível Tech</span>
-            <span class="badge-nivel-tech">${resumoAnalise.nivelTech}</span>
-        </div>
-        <div class="bloco-analise">
-            <span class="rotulo-analise">Arquétipo Profissional</span>
-            <span class="tipo-desenvolvedor">${resumoAnalise.arquetipoTech}</span>
-        </div>
-        <div class="bloco-analise">
-            <span class="rotulo-analise">Linguagem Dominante</span>
-            <span class="linguagem-destacada">
-                <span class="ponto-linguagem" style="background-color: ${corLinguagem};"></span>
-                <span>${resumoAnalise.linguagemPrincipal}</span>
-            </span>
+        <div class="conteiner-blocos-analise">
+            <div class="bloco-analise">
+                <span class="rotulo-analise">Nível</span>
+                <span class="badge-nivel-tech">${resumoAnalise.nivelTech}</span>
+            </div>
+            <div class="bloco-analise">
+                <span class="rotulo-analise">Arquétipo</span>
+                <span class="tipo-desenvolvedor">${resumoAnalise.arquetipoTech}</span>
+            </div>
+            <div class="bloco-analise">
+                <span class="rotulo-analise">Linguagem</span>
+                <span class="linguagem-destacada">
+                    <span class="ponto-linguagem" style="background-color: ${corLinguagem};"></span>
+                    <span>${resumoAnalise.linguagemPrincipal}</span>
+                </span>
+            </div>
         </div>
     `;
 
     colunaLateral.appendChild(cartaoPerfil);
-    colunaLateral.appendChild(cartaoAnalise);
 
     // 4. Coluna Principal - Grade de Estatísticas
     const gradeEstats = document.createElement('div');
@@ -220,6 +221,7 @@ export function renderizarDashboard(resumoAnalise, repositoriosMapeados) {
     secaoRepos.appendChild(cabecalhoSecao);
     secaoRepos.appendChild(gradeRepos);
 
+    colunaPrincipal.appendChild(cartaoAnalise);
     colunaPrincipal.appendChild(gradeEstats);
     colunaPrincipal.appendChild(secaoRepos);
 

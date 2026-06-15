@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -7,7 +8,9 @@
     <!-- Fontes do Google: Outfit para títulos e Inter para textos gerais -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Outfit:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <link
+        href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Outfit:wght@400;500;600;700;800&display=swap"
+        rel="stylesheet">
     <!-- Font Awesome para ícones modernos -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <!-- Estilização do Aplicativo -->
@@ -15,6 +18,7 @@
     <!-- Biblioteca jQuery -->
     <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
 </head>
+
 <body class="corpo-app">
     <div class="conteiner-principal">
         <!-- Cabeçalho Principal -->
@@ -23,7 +27,7 @@
                 <i class="fa-solid fa-terminal icone-logo"></i>
                 <span class="texto-logo">DevScope</span>
             </div>
-            <p class="subtitulo-app">Transforme perfis do GitHub em portfólios analíticos de alto impacto</p>
+            <p class="subtitulo-app">Analisa perfis do Github e gera um relatório de expertise</p>
         </header>
 
         <!-- Seção de Busca (Home) -->
@@ -31,7 +35,8 @@
             <form class="formulario-busca" id="formulario-pesquisa">
                 <div class="grupo-busca">
                     <i class="fa-solid fa-magnifying-glass icone-busca"></i>
-                    <input type="text" id="campo-usuario-github" class="campo-busca" placeholder="Digite o nome de usuário do GitHub (ex: torvalds)" required autocomplete="off">
+                    <input type="text" id="campo-usuario-github" class="campo-busca"
+                        placeholder="Digite o nome de usuário do GitHub (ex: github)" required autocomplete="off">
                 </div>
                 <button type="submit" class="botao-busca" id="botao-enviar-pesquisa">
                     <span>Analisar Perfil</span>
@@ -65,16 +70,18 @@
         <!-- Elemento de Erros -->
         <div class="conteiner-erro invisivel" id="alerta-erro-perfil">
             <i class="fa-solid fa-circle-exclamation icone-erro"></i>
-            <span class="mensagem-erro" id="texto-alerta-erro">Usuário não encontrado ou limite de requisições excedido.</span>
+            <span class="mensagem-erro" id="texto-alerta-erro">Usuário não encontrado ou limite de requisições
+                excedido.</span>
         </div>
 
         <!-- Rodapé do Aplicativo -->
         <footer class="rodape-app" id="rodape-institucional">
-            <p>&copy; 2026 DevScope &bull; Desenvolvido para a disciplina Programação para Internet I</p>
+            <p>&copy; 2026 DevScope &bull; Desenvolvido por ismaelithalo</p>
         </footer>
     </div>
 
     <!-- Ponto de Entrada da Lógica (Módulo ES6) -->
     <script type="module" src="js/main.js"></script>
 </body>
+
 </html>
